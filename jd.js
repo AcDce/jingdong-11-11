@@ -22,12 +22,16 @@ function get_task(pat) {
 
 //浏览5个商品
 function browse_five_goods_task() {
-    sleep(1000); scrollDown(); sleep(1000);
+    sleep(1500)
     list_money = textStartsWith('¥').find()
-    for (let i = 0; i < 5 && list_money.length >= 5; i++) {
-        x = list_money[i]
-        if(click(x.bounds().centerX(), x.bounds().centerY())){
-            sleep(1000); back(); sleep(1000)
+    for (let ii = 0; ii < list_money.length && ii < 5; ii++) {
+        x = list_money[ii]
+        list_btn = x.parent().parent().children()
+        for (let i = 0; i < list_btn.length; i++) {
+            if (list_btn[i].clickable()) {
+                list_btn[i].click();
+                sleep(1000);back();sleep(1000);
+            }
         }
     }
     back()
@@ -37,7 +41,7 @@ function browse_five_goods_task() {
 function purchase_five_goods_task() {
     sleep(2000)
     list_money = idContains("jmdd-react-smash").find()
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5 && i < list_money.length; i++) {
         list_money[i].click()
         sleep(1000)
     }
@@ -89,11 +93,11 @@ for (let i = 0; i < MAX_EPOCH; i++) {
     let btn_todo = get_task("浏览可得")
     if (!btn_todo) break
     btn_todo.click()
-    sleep(1000); back(); sleep(1000);
+    sleep(2000); back(); sleep(1000);
 }
 console.log('简单浏览任务(无时间限制)，完成')
 
-//精选联合会员任务，完成 
+//精选联合会员任务
 console.log('开始执行精选联合会员任务')
 for (let i = 0; i < MAX_EPOCH; i++) {
     let btn_todo = get_task("成功入会")
