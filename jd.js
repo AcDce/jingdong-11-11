@@ -26,8 +26,9 @@ function browse_five_goods_task() {
     list_money = textStartsWith('¥').find()
     for (let i = 0; i < 5 && list_money.length >= 5; i++) {
         x = list_money[i]
-        click(x.bounds().centerX(), x.bounds().centerY())
-        sleep(1000); back(); sleep(1000)
+        if(click(x.bounds().centerX(), x.bounds().centerY())){
+            sleep(1000); back(); sleep(1000)
+        }
     }
     back()
 }
