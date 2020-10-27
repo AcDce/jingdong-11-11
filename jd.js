@@ -54,7 +54,7 @@ while (true) {
 }
 
 //执行简单8秒任务 
-console.log('开始执简单8秒任务 ')
+console.log('开始执行简单8秒任务')
 for (let i = 0; i < MAX_EPOCH; i++) {
     let btn_todo = get_task("8秒")
     if (!btn_todo) break
@@ -91,3 +91,18 @@ for (let i = 0; i < MAX_EPOCH; i++) {
     sleep(1000); back(); sleep(1000);
 }
 console.log('简单浏览任务(无时间限制)，完成')
+
+//精选联合会员任务，完成 
+console.log('开始执行精选联合会员任务')
+for (let i = 0; i < MAX_EPOCH; i++) {
+    let btn_todo = get_task("成功入会")
+    if (!btn_todo) break
+    btn_todo.click()
+    sleep(3000)
+    btn_assure = textContains('确认授权并加入店铺会员').findOne(2000)
+    if (!btn_assure) continue
+    btn_assure.click()
+    sleep(3000)
+    back()
+}
+console.log('精选联合会员任务，完成')
